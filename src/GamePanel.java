@@ -10,17 +10,17 @@ public class GamePanel extends JPanel implements ActionListener{
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 25;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
-    static final int DELAY = 75;
+    static final int DELAY = 80;
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
     int bodyParts = 6;
     int foodEnten;
     int foodX;
     int foodY;
-    char direction = 'R';
+    char direction = 'R';     // User input direction R:Right, L:Left, U:Up, D:Down
     boolean running = false;
     Timer timer;
-    Random random;
+    Random random;   // For food to appear on screen randomly
 
     GamePanel(){
         random = new Random();

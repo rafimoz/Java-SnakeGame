@@ -204,4 +204,4 @@ public class GamePanel extends JPanel implements ActionListener{
     }
 }
 
-//Completed
+//Completed by Rafi, Drisy and Salma

@@ -15,14 +15,14 @@ public class GamePanel extends JPanel implements ActionListener{
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 25;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
-    static final int DELAY = 80;
+    static final int DELAY = 100;
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
     int bodyParts = 6;
     int foodEnten;
     int foodX;
     int foodY;
-    char direction = 'R';     // User input direction R:Right, L:Left, U:Up, D:Down
+    char direction = 'D';     // User input direction R:Right, L:Left, U:Up, D:Down
     boolean running = false;
     Timer timer;
     Random random;   // For food to appear on screen randomly
@@ -84,9 +84,9 @@ public class GamePanel extends JPanel implements ActionListener{
             }
 
             g.setColor(Color.red);
-            g.setFont(new Font("SansSerif", Font.BOLD, 35));
+            g.setFont(new Font("SansSerif", Font.BOLD, 25));
             FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("Score: "+foodEnten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+foodEnten))/2, g.getFont().getSize());
+            g.drawString("Score: "+foodEnten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+foodEnten))-10, g.getFont().getSize());
         }
         else {
             gameOver(g);
@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements ActionListener{
         }
     }
     public void checkCollision(){
-        //checks if the head collides with the body
+        //checks if the head collides with the body by salma and dristy
         for (int i = bodyParts; i > 0; i--) {
             if((x[0] == x[i]) && (y[0] == y[i])){
                 running = false;
@@ -144,7 +144,7 @@ public class GamePanel extends JPanel implements ActionListener{
             running = false; 
         }
         //checks if head touches bottom border
-        if(y[0] > SCREEN_HEIGHT){
+        if(y[0] >= SCREEN_HEIGHT){
             running = false; 
         }
 
@@ -178,6 +178,7 @@ public class GamePanel extends JPanel implements ActionListener{
         @Override
         public void keyPressed(KeyEvent e){
             switch(e.getKeyCode()){
+                // For WASD key controll
                 case KeyEvent.VK_A:
                     if(direction != 'R'){
                         direction = 'L';
@@ -194,6 +195,28 @@ public class GamePanel extends JPanel implements ActionListener{
                     }
                     break;
                 case KeyEvent.VK_S:
+                    if(direction != 'U'){
+                        direction = 'D';
+                    }
+                    break;
+
+                    // For Arrow key controll
+                case KeyEvent.VK_LEFT:
+                    if(direction != 'R'){
+                        direction = 'L';
+                    }
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    if(direction != 'L'){
+                        direction = 'R';
+                    }
+                    break;
+                case KeyEvent.VK_UP:
+                    if(direction != 'D'){
+                        direction = 'U';
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
                     if(direction != 'U'){
                         direction = 'D';
                     }
